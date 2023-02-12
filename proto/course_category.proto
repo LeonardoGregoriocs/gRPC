@@ -23,10 +23,15 @@ message CategoryGetRequest {
     string id = 1;
 }
 
+message CategoryGetRequestName {
+    string name = 1;
+}
+
 service CategoryService {
     rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
     rpc ListCategories(blank) returns (CategoryList) {}
     rpc GetCategory(CategoryGetRequest) returns (Category) {}
+    rpc GetCategoryByName(CategoryGetRequestName) returns (Category) {}
 }
 
 // Contratos definidos para utilizar durante a conexão gRPC.
