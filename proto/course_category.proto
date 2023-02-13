@@ -27,6 +27,10 @@ message CategoryGetRequestName {
     string name = 1;
 }
 
+message InfoDelete {
+    string id = 1;
+}
+
 service CategoryService {
     rpc CreateCategory(CreateCategoryRequest) returns (Category) {}
     rpc CreateCategoryStream(stream CreateCategoryRequest) returns (CategoryList) {} // Quando queremos enviar os dados em stream.
@@ -34,6 +38,7 @@ service CategoryService {
     rpc ListCategories(blank) returns (CategoryList) {}
     rpc GetCategory(CategoryGetRequest) returns (Category) {}
     rpc GetCategoryByName(CategoryGetRequestName) returns (Category) {}
+    rpc DeleteCategory(CategoryGetRequest) returns (InfoDelete) {}
 }
 
 // Contratos definidos para utilizar durante a conexão gRPC.

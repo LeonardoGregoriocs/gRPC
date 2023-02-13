@@ -74,3 +74,12 @@ func (c *Category) FindByName(name string) (Category, error) {
 
 	return Category{ID: id, Name: name, Description: description}, nil
 }
+
+func (c *Category) Delete(id string) (Category, error) {
+	err := c.db.QueryRow("DELETE FROM categories WHERE id = $1 RETURNING id", id).Scan(&id)
+	if err != nil {
+		return Category{}, err
+	}
+
+	return Category{ID: id}, nil
+}

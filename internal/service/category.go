@@ -134,3 +134,16 @@ func (c *CategoryService) CreateCategoryStreamBidirectional(stream pb.CategorySe
 
 	}
 }
+
+func (c *CategoryService) DeleteCategory(ctx context.Context, in *pb.CategoryGetRequest) (*pb.InfoDelete, error) {
+	_, err := c.CategoryDB.Delete(in.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	InfoResponse := (&pb.InfoDelete{
+		Id: in.Id,
+	})
+
+	return InfoResponse, nil
+}
